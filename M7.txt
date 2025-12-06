@@ -1,0 +1,111 @@
+
+//morphology 
+ 
+  Morphology = study of the internal structure of words.
+
+//intro 
+  Morphology studies how words are formed
+  Words are built using smaller meaningful units called morphemes.
+  ex: revisited 
+       re-again , visit - action , ed- past tense 
+  morphology = rules + building blocks of words 
+
+what is morpheme ?
+  A morpheme is the smallest meaningful unit. 
+   that cannot be broken further for a meaningful unit 
+   not the same as :
+    syllable (sound-based)
+    word (can have multiple morphemes)
+
+    ex: tuxedo (1 morpheme, 3 syllables)
+        sixths (3 morphemes, 1 syllable)
+
+what is syllable ?
+  a syllable is 
+    . a unit of sound 
+    . contains one vowel sound 
+    . spoken in one breath 
+
+  syllable = 
+    Onset (O) - consonants before vowel 
+    Nucleus (N) - vowel 
+    Coda (C) - consonants after vowel 
+    Nucleus + coda = rhyme 
+
+   ex: Out : none- onset  , o - nucleus ut - coda 
+       pond : p-onset ,o - nucleus , nd - coda 
+    
+    two ways to classify syllables 
+    1) number of syllables :
+       . Monosyllable - 1 syllable 
+       . polysyllable - more than 1 
+    2) ending type 
+       . open syllable - ends with vowel 
+       . closed syllable - ends with consonant 
+    
+//open syllable 
+  Ends with vowel
+  Vowel sound is long
+  ex: to, hi, go, he , she 
+
+//closed syllable 
+  Ends with consonant
+  Vowel sound is short
+  ex: cat,flat, fast 
+
+//sounds : vowel types 
+ Monophthongs - single vowel sound 
+ Diphthongs - two vowel sound combined 
+
+ //monophthongs  
+  A monophthong is where there is one vowel sound in a syllable.
+  ex: fat,thin,hot 
+
+ //diphthongs 
+  two vowel sounds glide together.
+  ex: crazy,boat,now....
+
+//Morpheme types 
+ two main groups 
+ 1. Free Morpheme  - stands alone 
+   . Lexical 
+   . Functional 
+ 2. Bound Morpheme  - cannot stand alone 
+   . Derivational 
+   . Inflectional 
+
+//Free morphemes 
+ Lexical (open class)
+  . nouns,verbs,adjectives,adverbs 
+  . (book,love,sing)
+ Functional (closed class)
+  . pronouns, articles, conjunctions 
+  . (the,and,in)
+
+//Bound morphmes (Affixation)
+ types of affixes:
+  prefix - front (re-order)
+  suffix - end (order-ed)
+  infix - inserted inside word 
+
+//inflectional morphology 
+ inflection - adds grammatical info , doesnt change world class. 
+ ex: 
+  play - played 
+  laptop - laptops 
+
+// inflectional morphemes 
+  Nouns . s,
+   verbs - s,ed,en,ing 
+   adjectives - er,est 
+
+//derivational morphology 
+  Derivation = creates a new word, often changes word class.
+  ex: 
+   alchohol - alchoholic 
+   clear - clearance 
+   active - activity 
+   read - readable 
+
+ common examples - ic,ly,ate,ity,ship,re 
+

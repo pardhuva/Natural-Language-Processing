@@ -1,0 +1,43 @@
+RAW DATA (TE ↔ HI)
+     │
+     ▼
+1) PREPROCESSING
+   - cleaning, lowercasing, punctuation removal, tokenization
+   - (technique: rule-based text cleaning + tokenizers)
+     │
+     ▼
+2) STOPWORD REMOVAL
+   - remove high-frequency function words
+   - (technique: rule-based filtering)
+     │
+     ▼
+3) NER (optional, recommended)
+   - detect & protect PERSON/LOC/ORG so they are transliterated, not mistranslated
+   - (technique: NER model / rule-based tagger)
+     │
+     ▼
+4) SIMILARITY SCORING & ALIGNMENT
+   - filter low-quality sentence pairs → produce corpus.tsv
+   - (technique: classical TFIDF/cosine or contextual embeddings like BERT for better alignment)
+     │
+     ▼
+5) CORPUS CREATION (corpus.py)
+   - produce machine_translation/data_model_input/corpus.tsv
+     │
+     ▼
+6) TRAINING (train.py & train_reverse.py)
+   - build vocab (Vocab class)  ← (component: vocabulary mapping word↔id)
+   - build bilingual dictionary (word→word)  ← (technique: rule-based co-occurrence / count-based)
+   - train TF-IDF on src side  ← (feature weighting model)
+   - train Telugu 5-gram LM using NLTK MLE(5)  ← (statistical n-gram language model)
+   - outputs: machine_translation/vocab/*.pkl and machine_translation/models/{dictionary.pkl, language_model.pkl, tfidf.pkl}
+     │
+     ▼
+7) TRANSLATION (translate.py / translate_reverse.py)
+   - inference: transliteration + bilingual_dict lookup + decode + LM scoring
+   - (technique: hybrid rule-based + statistical scoring)
+     │
+     ▼
+8) EVALUATION & DEPLOYMENT
+   - BLEU / manual testing → iterate
+   - optional: API/UI (Flask/Streamlit)

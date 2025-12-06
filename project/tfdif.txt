@@ -1,0 +1,21 @@
+“We used TF-IDF during the training phase to analyze word importance in the Hindi corpus. 
+Rare and meaningful words get higher TF-IDF scores, so they are given more weight because they carry the real meaning of the sentence 
+and need accurate translation. Very common words get low TF-IDF scores because they don’t contribute much meaning. 
+So TF-IDF helped us understand which words are more important during model preparation, even though the final translation step relies mainly on dictionary-based rules.”
+
+“TF-IDF is trained but not used in the translator, because our current system is purely rule-based and dictionary-based. 
+TF-IDF is only part of training analysis, not the final translation logic.”
+
+TF-IDF is not used in our current dictionary-based translation.
+ But it becomes very useful in extended or neural versions of the system—for ranking translations, 
+ weighting important words, improving dictionary extraction, or computing sentence similarity.
+  That’s why we trained and saved the TF-IDF model for future development.”
+
+
+  We didn’t need TF-IDF in our current system because our translation pipeline is purely dictionary-based and rule-based.
+   TF-IDF is only useful when we need ranking, scoring, or weighting multiple translation possibilities, but our system performs a direct one-to-one dictionary lookup, so TF-IDF has no role in the final translation process.”
+
+   We trained TF-IDF during the preparation stage to analyze word importance and keep it ready for future enhancements like ranking translations or improving dictionary scoring. But our current translator does not use TF-IDF directly
+
+“Yes sir, TF-IDF becomes useful when using neural models because it helps identify important words, clean data, and rank translations. Our current rule-based system doesn’t need it, but future neural versions will.”
+

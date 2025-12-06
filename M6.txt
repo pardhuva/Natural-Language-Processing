@@ -1,0 +1,159 @@
+
+N-gram 
+An n-gram is just a sequence of n items (usually words or characters) taken from a text.
+
+what are N-grams
+    An N-gram is a sequence of N consecutive words.
+    Examples:
+
+    Unigram (1-gram): “I”, “am”, “happy”
+    Bigram (2-gram): “I am”, “am happy”
+    Trigram (3-gram): “I am happy”
+
+why do we use N-grams ?
+ to predict next words or compute sentence probability 
+ 
+applications :
+ google search suggestions (these predictions are based on how frequently (n-grams) appear in huge text data)
+ email writing (suggestion based on common pairs found in language models)
+ autocomplete 
+ spell correction 
+ speech recognition 
+ machine translation 
+ text generation 
+
+language processing depends on 
+ 1. domain knowledge - knowing the topic (ex: food, sports)
+ 2. Syntactic knowledge – grammar
+ 3. Lexical knowledge – word meanings
+
+ N-grams help capture lexical and local syntactic patterns.
+
+even slight variations matter, so the model must treat each word/variation separately when counting n-grams.
+ex: zero vs 0 
+
+if a  language has v words then naive model assign probability 1/V to each word 
+but actually n-grma model uses unigram probability 
+Unigram model: probability of a word depends on how often it appears.
+ popcorn > unicorn 
+
+bigrams capture context.
+
+Unigram: popcorn > unicorn
+Bigram: mythical unicorn > mythical popcorn
+
+
+
+//N-grams are mainly used to predict the next word by checking which word
+ (or sequence of words) occurs most frequently after the given context.
+
+ What N-gram Models Do
+    N-gram models try to guess the next word based on how often word sequences appear in a text dataset.
+
+Different N-gram Models
+ 
+ 1. Unigram (1-word model)
+    Ignores previous words.
+    Predict the next word based on overall frequency in the whole dataset.
+
+    Example:
+    “the” (highest frequency)
+    “is”
+    “and”
+
+    But → unigram gives poor predictions because it doesn’t consider context.
+    
+ 2. Bigram (2-word model)
+    Predicts next word using previous 1 word.
+
+    Formula:
+    P(next | previous) = Count(previous, next) / Count(previous)
+
+    Example:
+    "good ➝ morning" (40 times)
+    "good ➝ job" (10 times)
+
+    So after “good”, it will suggest “morning”.
+
+  3. Trigram (3-word model)
+        Uses previous 2 words for prediction.
+
+        Example:
+        After “I am going”, the most common next word might be “to”. 
+        
+   .
+
+🤖 How suggestions are generated?
+    When typing something like:
+
+    "I am going" → ?
+    The system:
+    1. Looks at all trigrams starting with “I am going”.
+    2. If not found, it backs off to bigram: “am going”.
+    3. If still not found, it backs off to unigram.
+    4. Picks the word with maximum probability.
+
+    This is called backoff or smoothing.
+
+
+why we need probabilistic language models ?
+ applications :
+  machine translation 
+  spell correction 
+  speech recognition 
+
+  Examples:
+
+    P(high winds tonight) > P(large winds tonight)  - machine translation 
+    P(fifteen minutes) > P(fifteen minuets)  - spell correction 
+    P(I saw a van) >> P(eyes awe of an)   - speech recognition 
+
+    All based on n-gram probabilities.
+
+//language models 
+  two main tasks 
+   1. P(sentence) - probability of entire sequence 
+       P(W) = P(w1,w2,w3,w4.....wn)
+   2. P(next word | previous words)
+       P(w5 | w1,w2,w3,w4) 
+  Any model that does this = language model.
+
+
+//chain rules 
+ P(x1,x2,x3,........xn) = P(x1) P(x2|x1) P(x3|x1,x2) P(x4|x1,x2,x3) ...... P(xn|x1,.....xn-1)
+   ex: P("its water is so transparent) = p(its) * p(water|its) * p(is|its water) *p(so|its water is) * P(transparent| its water is so)
+
+ P(next | previous) = Count(previous, next) / Count(previous)
+   ex: P(the | its water is so transparent that) = 
+                Count(its water is so transparent that the)/ Count(its water is so transparent)
+
+
+ //markovs assumption 
+    P(w1​…wn​) ≈ ∏ P(wi​∣wi−k​…wi−1​)
+     
+     ex:  P(the∣its water is so transparent that) ≈ P(the∣that) or P(the∣transparent that) (means it has only last 1 or 2 words matter)
+
+    k=1 -> bigram 
+    k=2 -> trigram 
+
+    unigram - P(w1w2w3​…wn​) ~ P(wi)
+    bigram -  P(w1w2w3​…wn​) ~ P(wi|wi-1)    Condition on previous word:
+    
+    Example sentence: “This is a sentence”
+    Unigrams: This, is, a, sentence
+    Bigrams: This is, is a, a sentence
+    Trigrams: This is a, is a sentence
+
+    Even 4-grams/5-grams cannot capture long-distance relationships
+
+    unigram model : P(w1)P(w2)P(w3).....
+    bigram model : P(w1)P(w2|w1)P(w3|w2)P(w4|w3)
+    trigram model : P(w1)P(w2|w1)P(w3|w2,w1).....P(wn|wn-1wn-2)
+    N-gram model : P(w1)P(w2|w1).....P(wn|wn-1wn-2......wn-N)
+
+limitations of N-grams 
+ cannot capture long-distance dependencies 
+ data sparsity 
+ many valid word combinations never appear in training data \
+
+ 

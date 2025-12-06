@@ -1,0 +1,56 @@
+
+//finite -state automata 
+ a regualr expression is one way of desribing of fsa 
+ a RE is one way of categorizign formal kind language called regular language 
+
+ ex: (a.b*) => ab,a3bbb .....
+
+ finite state automation : model to recognize patterns or process sequence of symbols 
+
+   five parameters 
+   Q: finite set of states 
+   sigma : finite set of input alphabets 
+   qo : start state 
+   delta(q,i) -> transition function 
+   F - set of final states 
+
+formal language -> set of strings where each string composed of symbols from finite set aphabet 
+
+deterministic -> there is only one or no transition to be taken for a given state adn input symbol 
+non deterministic -> there are several transitions can be taken from a given state and input symbol 
+
+//state -transition table 
+  left states and right inputs 
+
+//non deterministic finite state autometa 
+ 5 tuple 
+  same as before jsut the transition function changes 
+  q -> finite set of states 
+  sigma -> finite set of symbols called alphabets 
+  delta -> transition function  q x sigma -> powerset of q 
+  qo ->s tart state 
+  f -> set of final states 
+
+ transition function 
+ q X sigma -> q'
+ extended transition function -> A X sigma* -> q' (reads the entire string sigma* from q)
+
+
+//NFA to DFA 
+ 1. state transition diagram for nfa - where state at left and the all inputs at right and fill the transitions 
+  now build each 
+
+  | **Feature**                     | **DFA (Deterministic Finite Automaton)**                             | **NFA (Nondeterministic Finite Automaton)**                                              |
+| ------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Full form**                   | Deterministic Finite Automata                                        | Nondeterministic Finite Automata                                                         |
+| **State transitions**           | For each symbol of the alphabet, there is **exactly one** next state | For each symbol of the alphabet, there can be **zero, one, or multiple** next states     |
+| **Empty string (ε) transition** | Cannot use ε-transitions                                             | Can use ε-transitions                                                                    |
+| **Computation view**            | Can be understood as **one machine** processing input                | Can be understood as **multiple “branches” or machines** processing input simultaneously |
+| **Next state uniqueness**       | Next possible state is **distinctly set**                            | Next state can be **multiple possibilities**                                             |
+| **Ease of construction**        | More difficult to construct                                          | Easier to construct                                                                      |
+| **String rejection**            | String is rejected if it ends in a **non-accepting state**           | String is rejected if **all computation branches fail**                                  |
+| **Execution time**              | Time needed to process input is usually **less**                     | Time needed to process input is usually **more**                                         |
+| **Relationship**                | All DFAs are NFAs                                                    | **Not all NFAs are DFAs**                                                                |
+| **Memory requirement**          | Requires more space                                                  | Requires less space than DFA                                                             |
+| **Dead state**                  | May be required                                                      | Not required                                                                             |
+| **Transition function**         | δ: Q × Σ → Q (next state belongs to Q)                               | δ: Q × Σ → 2^Q (next state belongs to **power set of Q**)                                |

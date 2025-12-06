@@ -1,0 +1,40 @@
+
+Phonetics ,Phonology 
+ phonetics is the study of human sounds 
+ phonology is the classification of sounds within system of a particular language or languages 
+ three types : 
+  production(articulatory)
+  transmission(acoustic)
+  perception(auditive) of sounds 
+
+phones vs phonemes vs allophones 
+phones - basic sound units 
+  ex: [k],[b] [u]
+phonemes - smallest sound units that can distinguish meaning in a sentence 
+  exL /p/,/b/
+allophones - variants of a phoneme 
+   ex: [ph] in "pin" vs [p] -> "spin"
+
+ types of phonemes 
+  1. production(articulatory) - how sounds are produced (speech)
+  2. transmission(acoustic) - how sounds travel adn their physical properties 
+  3. perception(auditory) - how sounds are perceiveed by the ear 
+
+Phonetics = physical and perceptual aspects of sounds.
+Phonology = functional role of sounds in a language.
+Phones and allophones are phonetic, phonemes are phonological.
+
+places of articualtion - where sounds are made 
+ lips - p,b 
+ teeth - theeta,delta 
+ alveoral - t,d,s 
+ hard palate , soft palate 
+
+ manners of articulation - how sounds are made 
+ how airflow is shaped or blocked when producing sound 
+ stop - p,t,k 
+ nasal - m,n,
+ lateral - I 
+ trill,tap
+ 
+  Articulation in linguistics is about how speech sounds are produced using vocal organs like tongue, lips, nose, teeth, and vocal cords.

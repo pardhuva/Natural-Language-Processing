@@ -1,0 +1,76 @@
+                     ┌────────────────────────┐
+                     │     RAW DATA (TE–HI)    │
+                     └────────────┬────────────┘
+                                  │
+                                  ▼
+                   ┌───────────────────────────┐
+                   │    1. PREPROCESSING        │
+                   │  - Cleaning                 │
+                   │  - Punctuation removal      │
+                   │  - Lowercasing              │
+                   │  - Tokenization             │
+                   └────────────┬──────────────┘
+                                  │
+                                  ▼
+          ┌────────────────────────────────────────────────┐
+          │        2. STOP WORD REMOVAL (TE/HIN)           │
+          │ Removes common useless words to reduce noise    │
+          └──────────────────────┬──────────────────────────┘
+                                  │
+                                  ▼
+        ┌──────────────────────────────────────────────────┐
+        │   3. NER (Named Entity Recognition)               │
+        │  - Detect PERSON / LOCATION / ORG names           │
+        │  - Protect names from being removed               │
+        │  - Ensure clean alignment                         │
+        └────────────────────────┬──────────────────────────┘
+                                  │
+                                  ▼
+           ┌────────────────────────────────────────────┐
+           │     4. SIMILARITY SCORING (TE ↔ HI)         │
+           │  - Sentence alignment using cosine/BERT etc. │
+           │  - Filter out wrong or mismatched pairs       │
+           └─────────────────────┬────────────────────────┘
+                                 │
+                                 ▼
+                 ┌─────────────────────────────────┐
+                 │   5. CORPUS CREATION (corpus.py) │
+                 │ Generates: corpus.tsv            │
+                 └─────────────────┬────────────────┘
+                                   │
+                                   ▼
+                   ┌────────────────────────────────────┐
+                   │        6. TRAINING (train.py)       │
+                   │   Hindi → Telugu direction           │
+                   │   Builds:                            │
+                   │    - Vocab                           │
+                   │    - Dictionary                      │
+                   │    - TF-IDF model                    │
+                   │    - Telugu 5-gram Language Model    │
+                   └────────────────────┬─────────────────┘
+                                        │
+                                        ▼
+                     ┌────────────────────────────────────┐
+                     │  7. REVERSE TRAINING (train_reverse.py) │
+                     │   Telugu → Hindi direction               │
+                     │   Builds reverse dictionary + LM         │
+                     └─────────────────────┬────────────────────┘
+                                           │
+                                           ▼
+                      ┌──────────────────────────────────────┐
+                      │      8. TRANSLATION STAGE             │
+                      │  translate.py (TE → HI)               │
+                      │  translate_reverse.py (HI → TE)        │
+                      │  Using:                                │
+                      │   - dictionary.pkl                     │
+                      │   - language_model.pkl                 │
+                      │   - tfidf.pkl                          │
+                      │   - vocab.pkl                          │
+                      │   - transliteration                    │
+                      └──────────────────────┬─────────────────┘
+                                             │
+                                             ▼
+                         ┌──────────────────────────────────┐
+                         │     9. FINAL OUTPUT               │
+                         │  Translated Telugu/Hindi text     │
+                         └──────────────────────────────────┘

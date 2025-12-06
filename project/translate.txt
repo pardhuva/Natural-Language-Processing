@@ -1,0 +1,106 @@
+Our translator follows a hybrid rule-based approach.
+ We first convert the Hindi input into Roman (ITRANS) script 
+ — the same transliteration technique used during training — 
+ so that both languages are processed in a common format.
+ The romanized text is then cleaned, tokenized, and each token is translated using the bilingual dictionary
+ we built from the parallel corpus. 
+ After generating the translated words in Roman-Telugu, we convert them back into Telugu script through transliteration.
+ This hybrid combination of transliteration, dictionary lookup, rule-based logic, and language modeling allows us to achieve meaningful translation even without neural models.”
+
+
+“Hindi uses the Devanagari script and Telugu uses the Telugu script, so the characters are completely different and cannot be matched directly. 
+By converting both languages into a common Roman script (ITRANS), we get a uniform representation. 
+This makes dictionary building, token matching, and lookup much easier and consistent.”
+
+A rule-based approach uses predefined linguistic rules and dictionaries to translate text. 
+Instead of learning patterns automatically like neural networks, the system uses manually defined rules such as transliteration, tokenization, dictionary lookup, and output formatting.”
+
+
+//code 
+
+
+pickle
+Used to load the trained dictionary and language model saved during training.
+
+✔ re
+Used for cleaning text.
+
+✔ word_tokenize
+Used to split Roman-text into words.
+
+✔ transliterate
+Used to convert Hindi → Roman and Roman → Telugu.
+
+
+nltk.download('punkt', quiet=True)
+Ensures NLTK can tokenize sentences properly.
+
+Loading Trained Models
+base = "machine_translation/models"
+with open(os.path.join(base, "dictionary.pkl"), "rb") as f:
+    bilingual_dict = pickle.load(f)
+with open(os.path.join(base, "language_model.pkl"), "rb") as f:
+    telugu_lm = pickle.load(f)
+
+Functions for Transliteration
+def hi_to_rom(txt):
+    return transliterate(txt, sanscript.DEVANAGARI, sanscript.ITRANS)
+Converts Hindi (Devanagari) → Roman (ITRANS)
+This is needed because the dictionary keys are in Roman format.
+
+def rom_to_te(txt):
+    return transliterate(txt, sanscript.ITRANS, sanscript.TELUGU)
+Converts Roman Telugu → Telugu script
+
+
+
+Text Cleaning + Tokenization
+
+def clean_tokenize(s):
+    s = re.sub(r"[^\w\s]", " ", s.lower())
+    return word_tokenize(s)
+Removes punctuation
+Converts to lowercase
+Splits Roman text into words
+
+
+MAIN Translation Function
+def translate_sentence(hindi):
+    rom = hi_to_rom(hindi)              # 1. Hindi --> Roman
+    tokens = clean_tokenize(rom)        # 2. Clean + tokenize
+    output = []
+
+    for t in tokens:
+        output.append(bilingual_dict.get(t, t))   # 3. Dictionary lookup
+
+    telugu_rom = " ".join(output)        # 4. Join Roman Telugu words
+    return rom_to_te(telugu_rom)         # 5. Roman --> Telugu script
+
+STEP 1 — Hindi → Roman
+STEP 2 — Tokenize
+STEP 3 — Dictionary-based translation
+ Each token is translated using bilingual_dict.
+If the token exists → translate
+If not → keep the same token
+
+STEP 4 — Join into a Roman Telugu sentence
+STEP 5 — Roman Telugu → Telugu Script
+ This becomes the final translation.
+
+
+ User Interface Loop
+ print("💬 Hindi → Telugu Translator...")
+
+while True:
+    hi = input("Hindi: ")
+    if hi.lower() in ["exit", "quit"]:
+        break
+    te = translate_sentence(hi)
+    print("Telugu:", te)
+
+Allows live translation
+You can type Hindi and get the Telugu translation instantly.
+✔ Exits on “exit” or “quit”
+
+
+This approach uses transliteration and dictionary lookup instead of neural networks.”

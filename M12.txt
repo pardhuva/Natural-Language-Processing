@@ -1,0 +1,36 @@
+
+pragmatics 
+  how we use language in real life situations not just grammar 
+  it studies 
+    how people understand meaning even when words are incomplete 
+
+    not just studyign sentences but how people use them in real life 
+
+Pragmatics = meaning depends on situation + speaker intention.
+
+//speech act theory 
+ language is not only for saying but also doing 
+ speech - action 
+
+
+ //Discourse 
+   how sentences connect together to form meaning in communication  
+   it is about connected language not just individual sentences 
+
+//two types of discourse 
+ 1. structural definition - language above sentence level 
+ 2. functional definition - how we use language for communication 
+
+ Functional approach (Jakobson’s 6 functions)
+
+NLP-12[2]
+
+Language performs 6 functions:
+
+Addressor → who is speaking
+Addressee → who is receiving
+Message → what is being said
+Context → situation
+Code → language used (English, Telugu)
+Contact → channel (phone, face-to-face)
+

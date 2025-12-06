@@ -1,0 +1,463 @@
+
+//Introduction :
+    Natural Language Processing (NLP) is a field of artificial intelligence that focuses on enabling computers to understand, interpret, and generate human language.
+     it involves 
+    1. understanding the language structure : teaching the computer to recognize words,    grammar, and sentence formation.
+    2. Understanding meaning: Helping the model grasp the semantics of words and sentences, including context, intent, and relationships between words.
+    3. Generating language : Allowing computers to produce human-like text, responses, or translations.
+    4. Applications: NLP powers chatbots, translation services, sentiment analysis, summarization, speech recognition, and more.
+
+    In short, NLP makes machines capable of reading, understanding,
+     and writing human language by training them on large datasets and linguistic patterns.
+
+//NLP subfields
+ 1. NLU - Natural language understanding 
+    Goal: Make the computer understand human language.
+   Focus: Comprehension, interpretation, and extracting meaning from text or speech.
+    tasks include :
+      . intent recognition : identify what user wants (like give me weather condition of mumbai)
+      . entity recognition : detecting important information in text (eg: mumbai above)
+      . sentiment analysis : detecting emotion in text 
+      sarcasim detection , spam/ham filter 
+ 2. NLG - Natural language generation 
+    Goal: Make the computer generate human-like language.
+    Focus: Producing coherent and meaningful text, speech, or responses,
+    tasks include : 
+      text summarization ,chatbto responses ,report generation,mahcine translation ,speeling correction .
+
+//IBM watson 
+   IBM Watson is a suite of AI tools and services developed by IBM that uses Natural Language Processing (NLP), Machine Learning (ML), and Data Analytics to analyze and interpret large amounts of unstructured data (like text, audio, and images).
+    It’s famous for being able to “understand, reason, and learn” like a human.
+   
+//whats the diff btw watson adn chatgpt
+ IBM watson is mostly like a question answering and analytic system rather than a creative or grnerative AI 
+   Watson doesn’t invent new ideas or generate completely new text from scratch. It’s retrieval + reasoning based on existing data.
+   so when you aska question in natural language it checks in all the databases interpret the meaninign the return the answer so no new data 
+
+   ChatGPT creates new sentences and content based on patterns learned from huge datasets.
+   t can answer questions, write stories, summarize text, or even simulate a conversation without directly “looking up” answers in a database.
+
+Essentially, ChatGPT is generative, while Watson is analytical/retrieval-based.
+
+
+/** how to start NLP 
+  it is approached in levels ro stages 
+  1. Text Preprocessing -  Clean and prepare text.
+     . Tokenization: Splitting text into words or sentences.
+     . Stopword Removal: Remove common words like “the”, “is”.
+     . Lemmatization/Stemming: Reduce words to root form (“running” → “run”).
+  2. Feature Extraction – Represent text numerically so algorithms can process it.
+     . use Bow,word embeddings 
+  3. NLP Tasks / Techniques – Once text is ready, we can perform tasks like:
+      . Information Extraction (IE): Extract structured info from unstructured text.
+         Example: From “John bought 3 apples in New York,” IE can extract:
+            Person: John
+            Quantity: 3
+            Item: apples
+            Location: New York
+      . Sentiment Analysis: Determine if text is positive, negative, or neutral.
+      . Named Entity Recognition (NER): Detect names, locations, dates.
+      . Text Classification: Categorize news articles, emails, etc.
+      . Machine Translation: Translate text between languages.
+   4. Modeling / Algorithms – Use ML/DL methods:
+       . Classical ML: Naive Bayes, SVM
+       . Deep Learning: RNN, LSTM, Transformers
+   5.  Evaluation – Check performance using metrics like accuracy, F1-score, BLEU (for translation).
+
+ 
+ex: “I bought the new iPhone 15, and it’s amazing! The camera is fantastic, but the battery drains quickly.” 
+     this is review extract useful meaning nad analyze sentiment 
+    
+   1. Step 1: Text Preprocessing
+       Goal: Clean and prepare text for analysis.
+      . lowercase 
+          i bought the new iphone 15, and it’s amazing! the camera is fantastic, but the battery drains quickly.
+      . Remove punctuation 
+          i bought the new iphone 15 and its amazing the camera is fantastic but the battery drains quickly
+      . Tokenization (split into words):
+           ['i', 'bought', 'the', 'new', 'iphone', '15', 'and', 'its', 'amazing', 'the', 'camera', 'is', 'fantastic', 'but', 'the', 'battery', 'drains', 'quickly']
+      . Stopword Removal (remove common words like ‘the’, ‘is’, ‘and’):
+           ['bought', 'new', 'iphone', '15', 'amazing', 'camera', 'fantastic', 'battery', 'drains', 'quickly']
+      . Stemming/Lemmatization (optional, reduce words to root):
+           ['buy', 'new', 'iphone', '15', 'amazing', 'camera', 'fantastic', 'battery', 'drain', 'quickly']
+
+    Step 2: Feature Extraction
+       Goal: Convert text to numbers for analysis.
+        Using Bag of Words or TF-IDF: Each word becomes a feature.
+      Example: “amazing” → [0.23, 0.67, -0.11, ...] (vector representation)
+
+    step 3 : NLP Task – Sentiment Analysis
+        Goal: Determine if the review is positive, negative, or neutral.
+        Model sees words like: “amazing”, “fantastic” → positive
+        Words like “drains quickly” → negative
+        Result: Mixed/Positive sentiment
+    
+    step 4:  Step 4: NLP Task – Information Extraction
+        Goal: Extract structured info from text.
+                | Entity Type | Value                                 |
+        | ----------- | ------------------------------------- |
+        | Product     | iPhone 15                             |
+        | Feature     | Camera, Battery                       |
+        | Sentiment   | Positive (Camera), Negative (Battery) |
+    
+    step 5: Visualization / Output :
+          Product: iPhone 15
+            Features:
+            - Camera: Positive
+            - Battery: Negative
+            Overall sentiment: Positive
+
+    step 6: Optional – Advanced Modeling
+        Use Transformer-based models (like BERT) for more accurate sentiment and IE.
+
+    Preprocessing → 2. Feature Extraction → 3. NLP Task (Sentiment, IE) → 4. Structured Output
+
+
+//Information extraction 
+    Information Extraction (IE) is an NLP task that automatically extracts structured information (like names, places, dates, entities, relationships, etc.) from unstructured text (like documents, reviews, webpages).
+    Think of it like this:
+
+    Input: Free-flowing sentence or paragraph
+    Output: Structured data (like a table, JSON, etc.)
+
+     Types of Information Extraction Tasks
+     1. Named Entity Recognition (NER)
+         Extract entities such as: name,locations,organizations,dates,percentages 
+     ex: Text: "Apple Inc. was founded by Steve Jobs in Cupertino in 1976."
+           Entities:
+            ORG: Apple Inc.
+            PERSON: Steve Jobs
+            GPE: Cupertino
+            DATE: 1976
+     2. Relation Extraction
+         Find relationships between entities.
+          ex: Entity 1: "Steve Jobs", Relation: "founded" , Entity 2: "Apple Inc."
+     3. Event Extraction
+         Identify events and their participants.
+         Example: "John signed the contract on Monday."
+     4. Slot Filling / Template Filling
+          Populate structured templates.
+          e.g., For resumes, extract: name, education, skills, experience.
+    
+
+    ex: “Dr. A. P. J. Abdul Kalam was born on 15 October 1931 in Rameswaram, India.”  do information extraction
+     
+     1.  Text Preprocessing
+       lowercasing, Sentence splitting, Tokenization, Removing noise (optional)
+     2.  Named Entity Recognition (NER)
+          A. P. J. Abdul Kalam → PERSON  
+            15 October 1931 → DATE  
+            Rameswaram → GPE  
+            India → GPE
+     3. Relation Extraction (Optional) :
+          Use a pattern or trained model to extract facts like:
+           person:
+           date:
+           places :
+
+     4. output as structured data :
+             {
+            "person": "A. P. J. Abdul Kalam",
+            "birth_date": "15 October 1931",
+            "birth_place": ["Rameswaram", "India"]
+           output  }
+
+/Real-world Use Cases of Information Extraction
+    Extracting info from resumes, legal documents, emails
+    Mining medical reports for patient data
+    Analyzing news articles (who did what, when, where)
+    Processing customer reviews (product features, sentiment per feature)
+
+    | Step                         | What Happens                                |
+    | ---------------------------- | ------------------------------------------- |
+    | 1. Preprocess                | Clean and tokenize the text                 |
+    | 2. NER                       | Identify entities (person, date, org, etc.) |
+    | 3. Relation/Event Extraction | Understand how entities are related         |
+    | 4. Format Output             | Convert to structured data (tables, JSON)   |
+
+/sum : Information Extraction (IE) is a Natural Language Processing (NLP) task that automatically pulls structured information (like names, dates, locations, relationships) from unstructured text (documents, articles, reviews, etc.).
+
+
+// Machine translation :
+    it is an nlp task 
+    Machine Translation is an NLP task that automatically translates text from one language to another, such as English → French, Hindi → Telugu, etc.
+
+    It takes input in one language and produces the equivalent meaning in another language.
+    It's commonly used in tools like Google Translate, DeepL, and Microsoft Translator.
+
+   step by step pipeline 
+    1. Input sentence 
+       the user provides a sentence in the source language 
+       ex: ela unnav (telugu)
+    2. text preprocessing 
+       prepare the text for the model 
+       Lowercasing (if required)
+       Removing punctuation (sometimes)
+       okenization → Split into words or subword units
+       (Optional) Lemmatization/stemming
+       ["ela", "unnavu"]
+    3. encoding the input 
+       Convert tokens into numbers the model can understand.
+       each word is converted into an embedding vector using some tool 
+         [ [0.12, -0.5, ...], [0.9, 0.1, ...],  ]
+    4. Translation Model (Core NMT Model) requires a trained model.
+        you can use two types of models 
+        1. you are using a pretrained model (google translate,huggingface)
+           Someone (Google, Facebook, HuggingFace, etc.) has already trained the model on millions of sentence pairs (e.g., English ↔ French).
+           you dont need to train it just simply load and use the model for translation (called inference)
+        2.  You Want to Train Your Own Model(or you can finetune an existing ones means like training your required ones with the old ones)
+           for this you need parallel corpus (sentence pairs)
+           a deep learning framework 
+           a model architecture(transformer encoder-decoder)
+
+                | Term          | Meaning                                           |
+        | ------------- | ------------------------------------------------- |
+        | **Encoder**   | Understands the input sentence                    |
+        | **Decoder**   | Generates the translated sentence                 |
+        | **Training**  | Teaching the model using known sentence pairs     |
+        | **Inference** | Using a trained model to predict new translations |
+
+      encoder reads this soirce sentence and creates the context 
+    5. Decoding 
+        Convert the output vector sequence into actual words in the target language.
+        you can use any techniques 
+    6. postprocessing 
+        Make the output more human-readable.
+        Fixing punctuation
+        Replacing placeholders
+        Detokenization (joining words/subwords)
+        Capitalization
+    7. output to user 
+        the final transalted sentence is presented 
+    
+
+//alexa 
+ Alexa is Amazon’s voice-based virtual assistant, powered by NLP (Natural Language Processing) and AI technologies. It can perform tasks like:
+ answering questions,playign music,provide news,weather,controlling smart devices 
+
+    | Step                                        | Description                                                                       |
+    | ------------------------------------------- | --------------------------------------------------------------------------------- |
+    | **1. Wake Word Detection**                  | Alexa continuously listens for the **wake word** ("Alexa") using low-power chips. |
+    | **2. Audio Recording**                      | Once activated, it records the user’s speech.                                     |
+    | **3. Speech Recognition (ASR)**             | Converts speech → text. This is **Automatic Speech Recognition**.                 |
+    | **4. Natural Language Understanding (NLU)** | Understands user’s intent and extracts key info (intent + entities).              |
+    | **5. Task Execution / Response Generation** | Alexa decides what action to take or response to generate.                        |
+    | **6. Text-to-Speech (TTS)**                 | Converts response text → speech. Alexa speaks back to the user.                   |
+
+alexa = voice interface + cloud intelligence 
+ alexa is just the micorphone and speaker the real brain is cloud 
+ alexa uses external apis(cloud services) to fetch real time data 
+
+ step by step behind the scenes 
+    | Step                       | What Happens                                                                                      |
+    | -------------------------- | ------------------------------------------------------------------------------------------------- |
+    | 1. **Voice Captured**      | Device captures your voice                                                                        |
+    | 2. **Sent to Cloud**       | Sends voice to Amazon Alexa cloud servers                                                         |
+    | 3. **Speech → Text (ASR)** | Converts audio to text                                                                            |
+    | 4. **Text → Intent (NLU)** | Detects intent: `GetWeather`, location: `Delhi`                                                   |
+    | 5. **Calls Weather API**   | Alexa cloud uses **weather services (like AccuWeather, The Weather Channel)** to get live weather |
+    | 6. **Text Response**       | "It will be sunny in Delhi with a high of 33°C."                                                  |
+    | 7. **TTS → Audio**         | Converts text to speech and plays it on your Echo                                                 |
+
+ So yes, it's bundled with external APIs — not with real sensors for outside weathe
+
+
+ //text to speech 
+     Text-to-Speech (TTS) is a technology that converts written text into spoken voice output.
+     Input: "Hello, how are you?"
+     Output: A human-like voice saying: “Hello, how are you?”
+
+     applications : virtual assistants (alexa,siri,google assistant)
+     lanuage learning apps 
+
+     //how tts works 
+                | Step  | Process             | Description                                                                  |
+        | ----- | ------------------- | ---------------------------------------------------------------------------- |
+        | **1** | Text Normalization  | Clean and prepare the text (e.g., “Mr.” → “Mister”)                          |
+        | **2** | Linguistic Analysis | Split text into phonemes (sound units), understand punctuation, stress, etc. |
+        | **3** | Prosody Prediction  | Predict intonation, rhythm, and emphasis                                     |
+        | **4** | Acoustic Model      | Generate waveform from phonemes (voice signal)                               |
+        | **5** | Audio Playback      | Play the synthesized speech                                                  |
+      
+         
+                | Concept                | Purpose                               | One-line Meaning             |
+        | ---------------------- | ------------------------------------- | ---------------------------- |
+        | **Text Preprocessing** | To **simplify** the text for machines | "Clean and reduce the noise" |
+        | **Text Normalization** | To **expand or standardize** the text | "Make variations consistent" |
+
+     eg: amazon polly 
+
+//speech recognition  (speech to text )
+
+   Speech Recognition is the process of converting spoken language (audio) into written text using machine learning and signal processing.
+   //step by step 
+        | Step                       | Description                                                |
+    | -------------------------- | ---------------------------------------------------------- |
+    | **1. Audio Input**         | Microphone captures your speech                            |
+    | **2. Audio Preprocessing** | Noise reduction, volume adjustment, etc.                   |
+    | **3. Feature Extraction**  | Extract meaningful audio features (like MFCCs)             |
+    | **4. Acoustic Model**      | Maps sound patterns → phonemes (speech units)              |
+    | **5. Language Model**      | Uses grammar and context to form valid words and sentences |
+    | **6. Decoder**             | Combines everything to output the most likely text         |
+    | **7. Postprocessing**      | Fix capitalization, punctuation, spelling, etc.            |
+  
+        | Topic       | Summary                                                   |
+    | ----------- | --------------------------------------------------------- |
+    | What is it? | Converting speech → text                                  |
+    | Used in     | Voice assistants, transcription tools, accessibility apps |
+    | Key parts   | Acoustic model, language model, decoder                   |
+    | Examples    | Alexa, Siri, Google Assistant, meeting transcription apps |
+
+
+//speech to speech 
+    
+    It is the process of taking spoken input in one language, and generating spoken output in another language.
+    You say: "How are you?" (in English)
+    It replies: "¿Cómo estás?" (in Spanish)
+
+    speech recognition + machine translation + text-to-speech into one system.
+
+    //steps 
+        | Step  | Component                                 | What It Does                                                           |
+    | ----- | ----------------------------------------- | ---------------------------------------------------------------------- |
+    | **1** | 🎙️ **Speech Input**                      | User speaks in Language A (e.g., English)                              |
+    | **2** | 🧠 **Automatic Speech Recognition (ASR)** | Converts speech → text (e.g., `"How are you?"`)                        |
+    | **3** | 🧹 **Text Normalization & Preprocessing** | Clean/standardize the transcribed text                                 |
+    | **4** | 🌐 **Machine Translation (MT)**           | Translates text from Language A → Language B (e.g., English → Spanish) |
+    | **5** | 📄 **Text Postprocessing**                | Add punctuation, fix formatting                                        |
+    | **6** | 🔊 **Text-to-Speech (TTS)**               | Converts translated text → speech in Language B                        |
+    | **7** | 📢 **Speech Output**                      | Plays the translated voice response (e.g., `"¿Cómo estás?"`)           |
+    
+        | Aspect          | Description                                     |
+    | --------------- | ----------------------------------------------- |
+    | What is it?     | Convert spoken language A → spoken language B   |
+    | Main components | ASR → MT → TTS                                  |
+    | Used in         | Translators, assistants, accessibility apps     |
+    | Challenges      | Accents, noise, low-resource languages, fluency |
+
+
+   //Eliza 
+    it is the frist chatbot inspired the idea of "talking to machines"
+    it gives you illusion that it understand but actually it text pattern matching and replying with pre-written rules
+        
+        | Feature           | ELIZA (1966)                          | ChatGPT (Modern NLP)                                       |
+    | ----------------- | ------------------------------------- | ---------------------------------------------------------- |
+    | **Type**          | Rule-based chatbot                    | Deep learning–based language model                         |
+    | **Technology**    | Pattern matching + template responses | Transformer architecture + deep learning (LLM)             |
+    | **Understanding** | ❌ No real understanding               | ❌ Doesn’t truly understand, but generalizes patterns       |
+    | **Knowledge**     | Only what is programmed               | Learned from **massive text data** (books, websites, code) |
+    | **Responses**     | Predefined templates                  | Generated dynamically; can handle **unseen queries**       |
+    | **Reasoning**     | ❌ No                                  | ✅ Emergent pattern-based inference                         |
+    | **Flexibility**   | Very narrow                           | Broad — works across topics, languages, and contexts       |
+    | **Examples**      | Mimics a therapist conversation       | Conversational AI, coding help, translation, Q\&A          |
+
+   
+    ELIZA was one of the earliest chatbots, created in 1966, which simulated conversation using simple pattern matching and pre-defined templates. 
+    It could mimic a psychotherapist, but it had no understanding and could only respond to inputs that matched its programmed patterns. 
+    In contrast, ChatGPT is a modern AI language model based on deep learning and transformer architecture. 
+    It has been trained on massive amounts of text data, allowing it to generalize patterns and generate coherent responses to a wide range of questions, even those it hasn’t seen before. 
+    While it doesn’t truly “understand” language like a human, it can connect concepts across context, perform reasoning-like tasks, summarize, translate, and simulate conversation across multiple topics. 
+    Unlike ELIZA, ChatGPT’s responses emerge from learned patterns and probabilistic inference, making it flexible, context-aware, and capable of performing complex NLP tasks.
+
+    ex: if you ask like you have 3 apples nd you ar eadding 2 then chagpt gives you 5 there actually it does nt do any calaculations or doesnt store the number or do math operations internally 
+      it will pattern match with if youve x adn then y more then x+y in this way it pattern matches wiht the data it is trained on and it predict the most likely answer based on these patterns 
+
+
+//text summarization 
+    Text Summarization is an NLP task where a system automatically creates a shorter version of a text while retaining the main ideas or important information
+
+    Types of Text Summarization
+    1. Extractive Summarization
+        How it works: Selects important sentences or phrases directly from the original text
+        Does not generate new words, just picks key points.
+        Example:
+            Original: "The cat sat on the mat. It was very fluffy. Dogs were playing outside."
+            Summary: "The cat sat on the mat. Dogs were playing outside."
+    2. Abstractive Summarization :
+        How it works: Generates new sentences to capture the meaning of the text.
+        ses deep learning or NLP models to rewrite in a concise way.
+
+            Example:
+            Original: "The cat sat on the mat. It was very fluffy. Dogs were playing outside."
+            Summary: "A fluffy cat rested on the mat while dogs played outside."
+
+   //steps involved 
+    1.text input :
+        Raw text is collected (article, report, document).
+    2. Text Preprocessing
+        Cleaning: remove punctuation, lowercase text, remove stopwords.
+        Tokenization: split text into words or sentences.
+        Optional: lemmatization/stemming.
+    3. Language Understanding (Key Step!)
+        Goal: Let the machine “understand” what the text is about.
+        methods :
+            Extract semantic meaning (what is the topic, entities, relationships).
+             Generate contextual embeddings (e.g., using BERT, GPT).
+        This step is critical for abstractive summarization because the model needs to grasp meaning, not just pick sentences.
+    4. Feature Extraction / Importance Scoring
+        For extractive summarization: rank sentences by importance using scores (TF-IDF, TextRank).
+        For abstractive summarization: use embeddings to represent meaning and generate new text.
+    5. Summary Generation :
+        Extractive: pick top-ranked sentences.
+        Abstractive: generate concise sentences using deep learning models (T5, BART, GPT). 
+    6. Postprocessing
+        Fix grammar, punctuation, coherence
+        output theh final summary 
+
+
+//turing test 
+   The Turing Test is a test proposed by Alan Turing (1950) to determine whether a machine can exhibit intelligent behavior indistinguishable from a human
+
+   Participants:
+      Human evaluator, Human participant, Machine (AI system)
+    Setup: 
+       The evaluator interacts through text with both the human and the machine.
+       This avoids any bias from voice, appearance, or gestures
+    Evaluation :
+        If the evaluator cannot reliably tell which is the machine, then the machine is considered to have passed the test.
+
+    It measures the appearance of intelligent behavior, not actual human-like thinking.
+
+//dialog systems 
+   A Dialogue System (or Conversational Agent) is a computer system designed to interact with humans using natural language, either text or speech.
+
+   Goal: Understand user input, maintain context, and respond appropriately.
+   applications : virtuals assistants(siri,alexa),chatbots,tutors,ai for games
+
+    A Dialogue System is an AI system that communicates with humans in natural language. It can be rule-based, retrieval-based, or generative, and uses NLU, dialogue management, and response generation to understand queries, maintain context, and produce meaningful responses. 
+    Modern generative dialogue systems, like ChatGPT, can handle complex, unseen inputs and maintain coherent conversations.
+
+
+
+//summary 
+  Machine Translation :
+      Machine Translation (MT) is an NLP task where a text written in one language is automatically converted into another language.
+       The process begins with text preprocessing, which includes cleaning, tokenization, and normalization. 
+       Then, the system either uses pre-trained models or APIs, or you can train your own model using a parallel corpus of source and target language pairs. 
+       The model learns the mapping between languages and generates a translation. Finally, postprocessing ensures that the output text is coherent, grammatically correct, and ready for use.
+  Information Retrieval :
+      Information Retrieval (IR) focuses on extracting relevant information from large amounts of data.
+       From an input query or document, techniques such as Named Entity Recognition (NER) and relation extraction are used to identify key entities, relationships, and facts.
+        The system returns structured data that can be used for further analysis or downstream NLP tasks. Unlike simple search, IR aims to understand the content to retrieve meaningful information efficiently.
+  Question Answering :
+       Question Answering (QA) is the task of providing direct answers to user queries. 
+       Early systems, like ELIZA, performed QA by pattern matching and returning responses that already existed in a database.
+        Modern QA systems can generate answers dynamically using learned knowledge, but the core principle remains: extracting relevant information from text or structured data to respond accurately to questions.
+  Dialogue Systems :
+       Dialogue Systems, or conversational agents, are designed to interact with humans via text or speech. 
+       These systems simulate human-like conversations using techniques like Natural Language Understanding (NLU), dialogue management, and response generation. 
+       Examples include virtual assistants like Siri, Alexa, and Google Assistant. Dialogue systems maintain context over multiple turns, understand user intent, and provide appropriate, coherent responses.
+
+ Text-to-Speech (TTS) :
+       Text-to-Speech converts written text into spoken words. 
+       The process begins with text preprocessing and normalization, which includes tokenization, lemmatization, and expansion of abbreviations (normalization). 
+       Then, a TTS engine synthesizes the speech using acoustic and linguistic models. This technology allows machines to speak naturally, enabling applications like voice assistants, reading aids, and automated announcements.
+ Speech Recognition :
+       Speech Recognition, or Automatic Speech Recognition (ASR), converts spoken language into text.
+        The system first removes noise and disturbances, then performs preprocessing and normalization on the captured audio. 
+        After processing, the system generates structured textual output that can be further used for analysis, commands, or feeding into other NLP tasks.
+ Information Extraction (IE) :
+      Information Extraction is closely related to Information Retrieval but focuses on transforming unstructured text or audio data into structured information. 
+      Using techniques like Named Entity Recognition, relation extraction, and event detection, IE identifies key elements (names, dates, locations, relationships) from the input. 
+      This structured data can then be used for analytics, database population, or feeding other NLP systems.
+

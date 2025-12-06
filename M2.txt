@@ -1,0 +1,225 @@
+
+Processing a Raw Speech Signal :
+    1. The process begins with the raw speech signal, which is the actual audio waveform captured from a speaker.
+    2. This signal is analyzed by a speech recognition system, also known as Automatic Speech Recognition (ASR), which converts the audio into a sequence of words.
+    3. This step produces a textual representation of what was spoken, forming the basis for further linguistic analysis.
+    4. syntactic analysis (or parsing) is performed using knowledge of grammar rules. The goal is to identify the structure of the sentence, such as subject, verb, and object, as well as phrases and clauses. 
+    5. This helps the system understand how words are related to each other in the sentence.
+    6. semantic analysis uses information about the meaning of words to produce a partial representation of the sentence’s meaning
+    7. It interprets what the words refer to and how they combine to express concepts or relationships, which is crucial for understanding the content.
+    8. pragmatic analysis incorporates contextual information—such as prior conversation, speaker intent, and real-world knowledge—to generate the final representation of the sentence’s meaning.
+    9. This step allows the system to understand not just the literal meaning, but also the intended meaning in context, enabling intelligent responses or actions.
+  
+  ex: if suppose the speech signal is he loves mary 
+    speech recognition - gives you th etext he loves mary 
+    syntactic analysis - sentence structure by the grammar of langauge   (he, loves,mary)
+    semantic analysis - meanings of words    ~ x loves(X,mary)  -> partial meaning 
+    pargmatics -> sentence exact meaning by checking previous sentences loves(john,mary)
+
+//Morphology 
+   Morphology is the study of the internal structure of words and how they are formed from smaller units called morphemes.
+   A morpheme is the smallest meaningful unit in a language. Words can be composed of roots, prefixes, suffixes, or infixes.
+
+   eg: Word: unhappiness
+     Morphemes: un- (prefix, negation) + happy (root) + -ness (suffix, noun form)
+
+Why Morphology is Important in NLP ? 
+  1. text processing : Morphology helps in lemmatization and stemming, reducing words to their root form:
+      running -> run ,better ->good 
+  2. understanding word meaning  : By analyzing morphemes, NLP systems can infer meaning or grammatical role.
+      dogs -> root dog + plural (s)
+  3. improves nlp tasks like machine translation,information retireval ,question answering 
+
+  Morphology in NLP is the study of word structure and morphemes, helping machines understand, process, and normalize words.
+   It is crucial for tasks like lemmatization, stemming, and improving understanding in translation, retrieval, and sentiment analysis
+
+//syntax 
+   Syntax is the study of the structure of sentences and how words are arranged to form grammatically correct sentences in a language.
+   In NLP, syntactic analysis helps the system understand relationships between words, like which word is the subject, object, or verb.
+ 
+   Why Syntax is Important in NLP ??
+     1.sentence strcture understanding 
+     2. dependency and relation extraction 
+     3. foudnation for higher level nlp tasks 
+    
+   Syntax in NLP focuses on understanding sentence structure and word relationships. 
+   It is essential for analyzing grammar, parsing sentences, and enabling machines to understand how words interact, which in turn supports semantic and pragmatic understanding.
+ 
+ Syntax = sentence structure (how words are arranged)
+ Morphology = word structure (how words are formed and what parts mean)
+
+
+//lexical semantics 
+ Lexical Semantics is the study of word meanings and the relationships between words in a language.
+ It focuses on understanding what individual words mean, how meanings combine in phrases or sentences, and how words relate to each other.
+ 1. Word Meaning : (Each word has a sense (specific meaning) and a reference (what it refers to in the real world).)
+ 2. Word Relations :  Lexical semantics studies relationships like:
+        Synonyms: words with similar meaning (big ↔ large)
+        Antonyms: words with opposite meaning (hot ↔ cold)
+        Hyponyms / Hypernyms: specific ↔ general (rose ↔ flower)
+        Polysemy: a word having multiple meanings (bank)
+ open vs close 
+   Open class words: content words that carry meaning, like nouns, verbs, adjectives, adverbs.
+         Example: dog, run, happy
+   Closed class words: function words that mainly show grammar, like pronouns, prepositions, conjunctions.
+          Example: the, and, in
+
+   Lexical Semantics studies word meaning and relationships between words. 
+   Open class words carry the main content and meaning, while closed class words serve grammatical purposes. 
+   This understanding is crucial for tasks like word sense disambiguation, search, and translation in NLP.
+
+
+//Compositional semantics 
+    Compositional Semantics is the study of how the meanings of individual words combine to form the meaning of a sentence.
+     It focuses on sentence-level meaning, not just single words.
+   In NLP, compositional semantics helps systems understand the meaning of sentences based on the meanings of the words and their syntactic arrangement.
+
+      ex: The boy is playing football in the field." → the sentence conveys an action performed by the boy in a specific location.
+
+//pragmatics 
+ Pragmatics is the study of how language is used to accomplish goals or convey intent, taking into account context beyond literal meaning.
+ It goes beyond the dictionary meaning of words to interpret speaker intentions. 
+    "Lift your arm" → an instruction, not just information
+    Where is your shoe?" → a question expecting a response or action.
+
+    Pragmatics is crucial in dialogue systems, virtual assistants, and any NLP application that interacts with humans in real-world contexts.
+
+//Discourse 
+   Discourse studies how sentences relate to each other and how information is structured in connected text or conversation.
+   It deals with conventions of dialogue, narrative flow, and context across sentences.
+    ex: "Satya started an export business in 2010. After five years he started another business."
+    Discourse analysis helps the system understand that the second sentence refers to the same person and timeline as the first
+    Discourse is important for story understanding, summarization, and multi-turn dialogue systems.
+
+
+//Morphology vs Syntax vs Semantics vs Pragmatics vs Discourse
+
+    | Analysis                    | Focus                           | Level                       | Example                                                   | Purpose in NLP                                                                           |
+    | --------------------------- | ------------------------------- | --------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+    | **Morphology**              | Structure of words              | Word-level                  | `unhappiness` → `un-` + `happy` + `-ness`                 | Understand word formation, roots, prefixes/suffixes; helps in lemmatization and stemming |
+    | **Syntax**                  | Structure of sentences          | Sentence-level              | `"The cat chased the mouse"` → subject, verb, object      | Understand grammatical arrangement and word relationships                                |
+    | **Lexical Semantics**       | Meaning of words                | Word-level                  | `"bank"` → financial institution / riverbank              | Understand word meaning, synonyms, antonyms, polysemy                                    |
+    | **Compositional Semantics** | Meaning of sentences            | Sentence-level              | `"Ravi closed the door"` → action performed by Ravi       | Combine word meanings and syntax to understand sentence meaning                          |
+    | **Pragmatics**              | Use of language in context      | Sentence or utterance level | `"Lift your arm"` → instruction                           | Understand speaker intention, implied meaning beyond literal words                       |
+    | **Discourse**               | Relationships between sentences | Multi-sentence / paragraph  | `"Satya started a business in 2010. After five years..."` | Track context, coherence, and information flow across sentences                          |
+
+    Morphology → looks inside words.
+    Syntax → looks at sentence structure.
+    Lexical Semantics → looks at word meanings.
+    Compositional Semantics → looks at sentence meanings from words + syntax.
+    Pragmatics → looks at intended meaning or goal in context.
+    Discourse → looks at connections across sentences or dialogue.
+
+    Morphology & Lexical Semantics → word-level understanding
+    Syntax & Compositional Semantics → sentence-level understanding
+    Pragmatics & Discourse → context & multi-sentence understanding 
+
+
+//Language Understanding in NLP
+   Language understanding is the process by which a machine interprets and makes sense of natural language input. It involves multiple levels of analysis, from words to sentences to context.
+1. Lexical Analysis :
+   Lexical Analysis is the first step and involves identifying and analyzing the structure of words. 
+   The lexicon of a language is the collection of all words and phrases.
+    In NLP, lexical analysis includes dividing text into paragraphs, sentences, and words, and checking that the words are valid in the language. 
+    This step ensures that the text can be further analyzed at higher levels.
+2. Syntactic Analysis (Parsing) :
+   Syntactic Analysis, or parsing, examines the grammar and structure of sentences
+   It arranges words in a way that reveals their relationships, like subject, verb, and object.
+    Sentences that violate grammar rules, such as "The school goes to boy", are rejected by a syntactic analyzer. 
+    This step is crucial for understanding how words combine to form correct and meaningful sentences.
+3. 3. Semantic Analysis :
+   Semantic Analysis extracts the exact meaning of sentences, mapping syntactic structures to concepts in the real world.
+   The system checks for meaningfulness; nonsensical sentences like "hot ice-cream" are flagged as invalid.
+   This step ensures that the machine understands what the text actually conveys.
+4. Discourse Integration :
+    Discourse Integration considers the context across sentences. 
+    The meaning of a sentence can depend on the previous or following sentences. 
+    For example, "He went to the bank. It was closed." requires understanding that "It" refers to the bank. 
+    This step ensures coherence and context awareness in multi-sentence text.
+5. Pragmatic analysis 
+   Pragmatic Analysis interprets the intended meaning behind what was said, using real-world knowledge. 
+   It goes beyond literal meaning to understand speaker intent. For example, "Can you open the window?" is literally a question but pragmatically a request. 
+   This step is essential for tasks like dialogue systems and intelligent assistants.
+
+   words → sentence structure → literal meaning → context → intended meaning:
+
+Lexical Analysis → words and tokenization
+Syntactic Analysis → grammar and sentence structure
+Semantic Analysis → sentence meaning
+Discourse Integration → meaning across sentences
+Pragmatic Analysis → intended meaning in context
+
+//for each one of the above steps theare are tools,libraries or techniques 
+
+ex: "Ravi gave the book to Satya yesterday."
+
+    | Step       | What it does                       | Example Result                                                |
+    | ---------- | ---------------------------------- | ------------------------------------------------------------- |
+    | Lexical    | Tokenizes words & sentences        | `['Ravi', 'gave', 'the', 'book', 'to', 'Satya', 'yesterday']` |
+    | Syntax     | Parses grammar & relations         | Subject=Ravi, Verb=gave, Object=book, IO=Satya                |
+    | Semantics  | Extracts meaning                   | Action=giving, Giver=Ravi, Receiver=Satya                     |
+    | Discourse  | Maintains context across sentences | Links `"the book"` to previous `"a book"`                     |
+    | Pragmatics | Infers intended meaning            | Satya received the book (implied knowledge)                   |
+
+
+NLP hard :
+  Ambiguity : Words and sentences often have multiple meanings depending on context.
+       Example: "bank" → financial institution or riverbank?
+  Complex Use of Context : Understanding language often requires world knowledge or previous conversation context.
+       Example: "Can you pass the salt?" → literally a question but pragmatically a request.
+  Fuzzy and Probabilistic Nature : Language is not always precise; meanings depend on probabilities and inference
+  Reasoning About the World : NLP often requires common sense reasoning.
+    Example: "Ravi gave Satya the book" → implies Satya now has the book.
+  Social and Cultural Complexity : Variations in slang, idioms, humor, sarcasm, and dialects make language understanding difficult.
+    Example: "This homework is wicked hard" → wicked here intensifies meaning, not literal evil.
+  Conversational Implicature : Speakers often imply things without saying them directly.
+    Example: "The opera singer was amazing; she sang all of the notes" → may imply something ironic.
+  Shared Knowledge : Understanding sometimes depends on common knowledge or current events.
+    Example: "Clinton is running for election" → knowing who Clinton is matters.
+
+ Hard: Ambiguity, context, reasoning, world knowledge, social conventions → full NLP understanding is AI-complete.
+ Easy: Simple tasks often work with basic text features.
+
+
+Ambiguity in NLP 
+ Ambiguity in a grammar means that there exists at least one string in the language for which more than one parse tree (or derivation) can be constructed.
+ A parse tree (also called a derivation tree) shows how a string is generated from the grammar.
+ If two or more different parse trees can be generated for the same string, the grammar is ambiguous.
+
+
+//solution : word sense disambiguation(WSD) : process of automatically determinign which meanign(sense) of a word is used in particular context 
+   //to resolve lexical ambiguity 
+ techniques: 
+   supervised leraning 
+   unsupervised learning 
+   knowledge-based - wordnet + rules 
+   deep learning models 
+
+//types of ambiguity 
+//lexical ambiguity - single word has multiple meanings 
+  ambiguity at word elvel (lexicon -> vocabulary)
+  ex: he sat at the bank 
+/syntactic ambiguity - sentnece whith multiple grammatical structures 
+ ex: i saw the man wiht the telescope 
+/semantic ambiguity - even the syntax is clear,the meaning is unclear 
+  ex: visitng relatives can be boring 
+/referential ambiguity - it is unclear what a pronoun or phrase refers to 
+  ex: john told david that he won 
+/attachment ambiguity - a type of syntactic amiguity:unclear where a phrase attchaes 
+ eX: she saw the dog with a telescoppe 
+/incomplete sentence ambiguity- when a sentence is not formed fully making it unclear or open to multiple interpretations 
+ ex: going to the bank 
+
+  | Ambiguity Type  | Description                  | Example                 |
+  | --------------- | ---------------------------- | ----------------------- |
+  | **Lexical**     | One word, many meanings      | "pen", "bank", "light"  |
+  | **Structural**  | Multiple sentence structures | "The box is in the pen" |
+  | **Referential** | Unclear pronoun reference    | "They were hungry"      |
+
+
+Grammatical vs. Ungrammatical Structures
+
+| Term                        | Definition                                                                                    |
+| --------------------------- | --------------------------------------------------------------------------------------------- |
+| **Grammatical structure**   | A sentence or phrase that follows the **rules of grammar** in a language.                     |
+| **Ungrammatical structure** | A sentence or phrase that **violates grammar rules** and sounds incorrect to native speakers. |

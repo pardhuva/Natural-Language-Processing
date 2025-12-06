@@ -1,0 +1,348 @@
+//Regular expressions 
+a formal language for specifying text strings 
+
+Word characters (\w) → [a-zA-Z0-9_]
+Non-word characters (\W) → anything not in [a-zA-Z0-9_], including:
+   Spaces
+   Punctuation (. , ; ! ? : - " ')
+   Symbols (@ # $ % & *)
+
+
+| Symbol  | Meaning                          | Example                                |       |                          |
+| ------- | -------------------------------- | -------------------------------------- | ----- | ------------------------ |
+| `.`     | Any one character                | `a.c` matches `abc`, `axc`             |       |                          |
+| `^`     | Start of string                  | `^a` matches `apple`                   |       |                          |
+| `$`     | End of string                    | `e$` matches `apple`, `pie`            |       |                          |
+| `*`     | 0 or more times                  | `lo*` matches `l`, `lo`, `loo`         |       |                          |
+| `+`     | 1 or more times                  | `lo+` matches `lo`, `loo`, but not `l` |       |                          |
+| `?`     | 0 or 1 time (optional)           | `colou?r` matches `color` and `colour` |       |                          |
+| `[]`    | Any one character from set       | `[aeiou]` matches vowels               |       |                          |
+| `[^]`   | Any one character **not** in set | `[^0-9]` matches non-digit             |       |                          |
+| `{n}`   | Exactly n times                  | `a{3}` matches `aaa`                   |       |                          |
+| `{n,}`  | n or more times                  | `a{2,}` matches `aa`, `aaa`...         |       |                          |
+| `{n,m}` | Between n and m times            | `a{2,4}` matches `aa`, `aaa`, `aaaa`   |       |                          |
+| \`      | \`                               | OR                                     | \`cat | dog`matches`cat`or`dog\` |
+| `()`    | Grouping                         | `(ab)+` matches `ab`, `abab`, `ababab` |       |                          |
+
+
+| Pattern | Meaning            | Matches             |
+| ------- | ------------------ | ------------------- |
+| `\d`    | Digit              | 0-9                 |
+| `\D`    | Non-digit          | a, !, #, etc.       |
+| `\w`    | Word character     | a-z, A-Z, 0-9, \_   |
+| `\W`    | Non-word character | spaces, symbols     |
+| `\s`    | Whitespace         | space, tab, newline |
+| `\S`    | Non-whitespace     | a, b, 1, etc.       |
+
+\b  ->  Restrict start/end of word only allows nonword characters 
+
+examples :
+  email address ->   \w+@\w+\.\w+     (word characters more than one + @(mandatory) + wordcharacters (more than one) + .(mnadatory)+wordcharacter more than one )
+  phonenumber  -> ^[6-9]\d{9}$
+  Validate a strong password (at least 1 uppercase, 1 digit, 8+ chars) -> ^(?=.*[A-Z])(?=.*[0-9]).{8,}$ -> you were only bothering about only one capital one digit remaining can be anything 
+  find all dates like 23-0-2025 ->  \b\d{2}-\d{2}-\d{4}\b
+          here \b b/ b means boundary so only those mentioned in the pattern are included and also only these character in the pattern no attachment with others 
+
+| Anchor / Boundary | Example Pattern | Matches (Only these)                       | Does NOT Match              |
+| ----------------- | --------------- | ------------------------------------------ | --------------------------- |
+| `^`               | `^[A-Z][0-9]`   | `"A1xyz"` → matches `"A1"` at start        | `"xA1"`, `"xyzA1"`          |
+| `$`               | `[A-Z][0-9]$`   | `"xyzA1"` → matches `"A1"` at end          | `"A1xyz"`, `"A1x"`          |
+| `^...$`           | `^[A-Z][0-9]$`  | `"A1"`                                     | `"A1xyz"`, `"xA1"`, `"AA1"` |
+| `\b`              | `\bcat\b`       | `"the cat sat"` → matches `"cat"`          | `"scatter"`, `"catalog"`    |
+| `\B`              | `\Bcat\B`       | `"scattering"` → matches `"cat"` in middle | `"the cat"`, `"cat"`        |
+
+
+
+[abcd] -> can be any a or b or c or d 
+
+[A-Z] -> upper case letter 
+[a-z] -> lower case letter 
+[0-9] -> a single digit 
+
+negations [^Anything] -> right of carat means nothing si possible 
+
+'|' -> pipe  means “either this or that”
+pattern1|pattern2|pattern3 -> Matches pattern1 or pattern2 or pattern3
+. means some character but \. means '.'
+
+//NLP errors 
+
+| Metric                   | What it Measures                                                                        | Goal / Minimizes             |
+| ------------------------ | --------------------------------------------------------------------------------------- | ---------------------------- |
+| **Precision (Accuracy)** | Of all the items the system identified as positive, how many are actually correct       | Minimize **false positives** |
+| **Recall (Coverage)**    | Of all the items that are actually positive, how many did the system correctly identify | Minimize **false negatives** |
+
+for decreasign errors in  nlp you have to increase precession adn increase recall 
+
+
+//flags 
+case sensitive search -> (i)   
+  ex :   /\bthe\b/i
+     Matches: "the", "The", "THE"
+global search - find all matches not jsut one 
+  ex: /\bthe\b/gi
+multiline search - search in all the lines 
+ eX:  /^the/m
+ Matches "the" at the start of each line in multi-line text
+
+
+
+ //shell script 
+
+ /shell 
+  A shell is a command-line interpreter.
+  It lets you interact with the operating system by typing commands.
+   common shells : bash,sh,csh 
+
+  //shell script 
+    A file with multiple shell commands written in order.
+    so the shell executes all of them in order without giving it one by one 
+    it can include : commands,variables,loops,functions,conditional statements 
+  
+   //how to run a shell scrip tab
+     1. make it executable - chmod +x myscript.sh 
+     2. run it - ./myscript.sh 
+
+    | Command | Purpose / Example                    |                                                                   |
+    | ------- | ------------------------------------ | ----------------------------------------------------------------- |
+    | `tr`    | Translate or delete characters       | `tr 'a-z' 'A-Z' < file.txt` → converts lowercase to uppercase     |
+    | `sed`   | Stream editor for text               | `sed 's/old/new/g' file.txt` → replaces `old` with `new` globally |
+    | `grep`  | Search for patterns in files         | `grep "the" file.txt` → finds lines containing `"the"`            |
+    | `awk`   | Pattern scanning and text processing | `awk '{print $1}' file.txt` → prints first column of each line    |
+    | `cat`   | Display or concatenate files         | `cat file.txt` → shows content of the file                        |
+    | `head`  | Show first few lines                 | `head -n 5 file.txt` → first 5 lines                              |
+    | `tail`  | Show last few lines                  | `tail -n 5 file.txt` → last 5 lines                               |
+    | `sort`  | Sort lines in a file                 | `sort file.txt` → sorts lines alphabetically or numerically       |
+
+
+//text normalisation 
+Text normalization is the process of transforming raw text into a consistent, standard format so that NLP algorithms can process it effectively.
+ 
+ 1.word segmentation/tokenisation :
+     Purpose: Split running text into individual words (tokens)
+     Challenges: Punctuation, contractions, hyphenated words, special characters
+
+    before tokenisation : "Hello, world! I'm Bheemarati."
+    after tokenisation : ["Hello", ",","world,"!", "I", "'m", "Bheemarati", "."]
+    awk to split on spaces 
+ 2. word normalisation : Purpose: Convert words to a consistent format
+    steps :
+     lowercasing -> The -> the 
+     removing punctuation -> world! -> world 
+     stemming/lemmatization -> "running" ->run 
+      before normalisation : "Running runs ran easily."
+      after normalisation :  ["run", "run", "ran", "easy"]
+  3. Sentence segmentation 
+      Purpose: Split running text into sentences
+      Challenges: Abbreviations, punctuation, quotation marks
+      before segmentation : "Hello world! I'm learning NLP. Let's normalize text."
+      after segmentation : ["Hello world!", "I'm learning NLP.", "Let's normalize text."]
+
+  it is mandatory for eveyr nlp task - ensures consistency ,reduces noise
+
+//WORD COUNTING 
+    lemma - canonical form of the word 
+    eX: cats and cat are same 
+    wordform - actual surface words 
+        
+        | Example                                                | Wordforms Count | Lemma Count | Notes                            |
+        | ------------------------------------------------------ | --------------- | ----------- | -------------------------------- |
+        | `I do uh main- mainly business data processing`        | 8               | 6–7         | Ignore `uh`, normalize fragments |
+        | `Seuss’s cat in the hat is different from other cats!` | 10              | 9           | `cat` + `cats` → same lemma      |
+
+
+//token - an instance of a word in runnign text 
+ duplicates involved 
+//type - distinct word in vocabulary 
+  unique words 
+
+N -> number of tokens 
+V |V| -> size of vocabulary (set of types)
+
+
+//simple tokenization in unix 
+ word tokens and thier frequencies 
+   tr -sc 'A-Za-z' '\n' < inputfile 
+    
+    tr means translate or delete characters 
+    -s - squeeze repeated characters into a single one
+    -c - treats 'A-Za-z' as the allowed set, and applies the action to everything not in it
+    'A-Za-z' - matches alphabetic characters only (uppercase & lowercase)
+    
+    so you squeeze all the non aphabetic characters and replace with '\n' means in a new line
+    ex: "hello word"
+       hello 
+       word 
+ sort -> sort in alphabetic order 
+     hello 
+     word 
+ uniq -c -> Counts how many times each unique word (type) appears
+ sort -nr -> (-n(numeric sort),-r(reverse order) ) -> Most frequent words come first
+ head -10 ->  Shows only the top 10 frequent words
+
+  //the resutl of heda depends on the word/command before it 
+   | **Previous Command** | **What It Does**                      | **What `head` Will Output**                                                                |                                       |                                  |
+    | -------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------- | -------------------------------- |
+    | `sort`               | Sorts alphabetically (A → Z)          | First 10 **alphabetical words**                                                            |                                       |                                  |
+    | `sort -r`            | Sorts in reverse alphabetical (Z → A) | First 10 **reverse-alphabetical words**                                                    |                                       |                                  |
+    | `sort -n`            | Numeric sort (ascending)              | First 10 lines sorted by **numbers at the start of line** (used with `uniq -c`)            |                                       |                                  |
+    | `sort -nr`           | Numeric reverse sort (descending)     | First 10 lines with **highest numeric values first** (used with `uniq -c` for frequencies) |                                       |                                  |
+    | `uniq -c`            | Counts consecutive duplicate lines    | First 10 **word counts**, but not sorted unless sorted beforehand                          |                                       |                                  |
+
+
+//problems with tokenization 
+ when we break text into tokens - tokenization - we run into ambigous cases 
+  1. punctuation marks 
+  2. capitalization 
+  3. multi-word expressions(san francisco)
+  4. contractions (I'm,isn't)
+
+  ex: 
+  Input: "I’m going to San Francisco at 100 m.p.h."
+  Expected tokens: ["I", "am", "going", "to", "San Francisco", "at", "100", "mph"]
+  actual tokens:  ["I", "’", "m", "going", "to", "San", "Francisco", "at", "100", "m", ".", "p", ".", "h", "."]
+
+   so to solve these use tokenization techniques 
+   | **Technique**                      | **What it does**                                                                                                   |
+    | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+    | **Contraction expansion**          | `isn’t` → `is` + `not`, `I’m` → `I` + `am` using rules or dictionaries                                             |
+    | **Hyphen handling**                | Keeps or splits hyphenated phrases depending on context (e.g., `"state-of-the-art"` can be one token)              |
+    | **Lowercasing**                    | Converts all text to lowercase to treat `The` and `the` the same                                                   |
+    | **NER (Named Entity Recognition)** | Groups tokens like `"San Francisco"` or `"New York"` into a single entity                                          |
+    | **Abbreviation detection**         | Preserves abbreviations like `Ph.D.`, `m.p.h.` using custom rules                                                  |
+    | **Advanced tokenizers**            | Use tools like **spaCy**, **BERT tokenizer**, or **nltk Treebank tokenizer** which handle most of these cases well |
+
+ different lanaguages have unique challenges in tokenization 
+  english -> contraction,punctuation,possesives,hyphenated words 
+  chinese -> no space between words 
+  social media -> emojis 
+ 
+  techniques 
+  rule based tokenization - use language specific rules 
+  dictionary/lexicon-based - matchs words against a vocabulary 
+  preprocessing - lowercasing,punctuation removal,emoji normalization,contraction expansion 
+
+  use language specific tokenizers (hugging face,mecab,spacy)
+
+
+//maximum matching segementation - chinese (find the longest word in dictionary that matches )
+
+//problems with sentence segmentation 
+  splitting text into sentences 
+    Input: "Dr. Smith went to Washington. He loves NLP!"
+  Output: ["Dr. Smith went to Washington.", "He loves NLP!"]
+
+ problem : period('.') is tricky as it can appear in multiple contexts 
+  i went home. , dr.srmit , 4.3 
+
+  solution : hwo to fidn that period is a sentence end or not 
+   first treat each period as potential boundary and use 
+     1. rule based approach 
+        period is followed by space + capital letter -> sentence end 
+        if period is after a known abbrevation -> not end 
+     2. machine leraning /classifier approach 
+      treat each period as binary classification probelm 
+       class 1 -> end of sentence 
+       class 0 -> not end of sentence 
+      options : decision tree, logistic regression,neural networks 
+
+
+//problems with normalization 
+  transforming words into consistent standard form 
+  ex: U.S.A -> USA ,Windows->windows 
+  main goal : Ensure that different forms of the same concept are treated the same especially in 
+    information retrieval(IR) : queries nad indexed documents must match even if they use different word forms 
+    search engines : useer searches for windows shoudl also get window related 
+
+   if no normalization USA adn U.S.A are treated different 
+
+   solution : 
+   1. equivalence classses : Define rules so multiple forms of a term are treated as equivalent.
+      ex: delete periods from abbreviations (u.s.a -> usa)
+   2. asymmetric expansion : Map one form to multiple possible forms during search or indexing.
+     entered : window -> search shoudl match window,Window,windows 
+   3. Lowercasing : treat the words same if lowercase words are same 
+   4. stemming/lemetization : reduce words to their root 
+      running -> run , better -> good(lemma)
+   5. handling synonyms -> map car -> automobiles 
+   6. removing punctuation : co-operate -> cooperate 
+
+
+//case folding 
+ Case folding is the process of converting all letters in text to a single case, usually lowercase, to reduce variability in text processing
+   Original: "The Quick Brown Fox"
+  After case folding: "the quick brown fox"
+
+ use cases 
+  information retrieval 
+  preprocessing for nlp 
+  search engine 
+  sentiment analysis 
+  exceptions : shoud not be used alwys 
+  ex: Fed vs fed, SAIL vs sail, US vs us 
+
+
+//lemmatization 
+ Lemmatization is the process of reducing inflected or variant forms of a word to its base or dictionary form, called the lemma.
+   are,am is -> be 
+   car's,cars -> car 
+   running -> run 
+
+   uses 
+   information retrieval 
+   machine translation 
+   text normalisation 
+
+    | Aspect                        | Notes                                                                                                                                      |
+    | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+    | **Stemming vs Lemmatization** | Stemming just removes suffixes (`cars` → `car`, `better` → `better`), lemmatization is dictionary-based and POS-aware (`better` → `good`). |
+    | **Applications**              | IR, MT, text preprocessing, sentiment analysis, information extraction                                                                     |
+    | **Requirement**               | Part-of-speech tagging + lexicon/dictionary for accurate results                                                                           |
+
+  Lemmatization reduces words to their canonical form, making NLP models more efficient and semantically consistent, unlike simple stemming which may produce non-words.
+
+//morphology 
+ morphemes : small meaningful units that make up words 
+   Morphology is the study of the internal structure of words and how they are formed from smaller meaningful units called morphemes.
+
+   It helps NLP systems understand word meaning, formation, and grammatical relationships.
+   stem vs affix 
+    | Type            | Definition                                         | Examples                                                                   |
+    | --------------- | -------------------------------------------------- | -------------------------------------------------------------------------- |
+    | **Stem / Root** | The core meaning-bearing unit of a word            | `book` (in `books`), `run` (in `running`)                                  |
+    | **Affix**       | A morpheme attached to a stem, usually grammatical | Prefixes: `un-` (`unhappy`) <br> Suffixes: `-ed` (`walked`), `-s` (`cats`) |
+
+   words = stems + affixes 
+
+   uses 
+    text normalization - (running -> run)
+    infromation retrieval - (match cat and cats )
+    machien translation 
+    parts of speech tagging 
+
+//stemming 
+  Stemming is the process of reducing words to their base or root form, called the stem, by crude removal of affixes.
+   
+   Unlike lemmatization, stemming does not consider the dictionary form or part of speech; it simply chops off endings.
+   ex: automatic/automates/automation -> atuomat 
+   used in 
+   information retrieval -> treat different forms of a word as equivalent 
+
+stemming vs lemmatization 
+
+    | Aspect   | Stemming                           | Lemmatization                      |
+    | -------- | ---------------------------------- | ---------------------------------- |
+    | Method   | Crude chopping of affixes          | Dictionary + POS-aware             |
+    | Output   | May not be a real word (`automat`) | Always a valid lemma (`be`, `run`) |
+    | Accuracy | Less precise                       | More precise                       |
+    | Speed    | Faster                             | Slower (needs dictionary lookup)   |
+
+
+//poster algorithm 
+stemming lago -> remove or replace suffixes to reduce words to stems 
+  original : caresses, ponies, cats, walking, plastered, relational, digitizer, operator
+  after porter stemming : caress, poni, cat, walk, plaster, relate, digitize, operate
+
+
+strip -ing only if there is vowel (*v*)ing -> remove ing so sing is same 
+  thsi presents over-stemming 

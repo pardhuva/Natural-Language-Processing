@@ -1,0 +1,75 @@
+
+Similarity scoring produces several files, each containing Hindi–Telugu pairs and similarity scores. 
+But machine translation models cannot train on multiple scattered files. 
+So we built corpus.py, which acts like a ‘corpus aggregator’. 
+It reads every file, picks only valid Hindi–Telugu pairs, cleans them, and merges everything into one unified file called corpus.tsv. 
+This final corpus becomes the input to our bilingual dictionary, language model, TF-IDF model, and translation systems.”
+
+
+os
+Used to work with file paths and directories.
+✔ pandas
+Used to read each .tsv file easily into a dataframe.
+✔ csv
+Used to write the final merged output as a .tsv.
+✔ re
+Used for cleaning text using regular expressions.
+✔ tqdm
+Shows a progress bar while reading multiple files.
+
+DATA_DIR
+This folder contains many .tsv files that were generated after similarity scoring
+
+OUT_PATH
+Final cleaned parallel corpus will be saved here
+
+os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+-> Creates the directory for output if it does not exist.
+
+files = [f for f in os.listdir(DATA_DIR) if f.endswith(".tsv")]
+ -> This collects all files from data_similarity_scoring/ having .tsv extension.
+
+
+//Text Cleaning Function
+def clean_text(text):
+    text = str(text).strip()
+    text = re.sub(r'\s+', ' ', text)
+    return text
+
+What it does:
+Converts data to string
+Removes leading & trailing spaces
+Replaces multiple spaces/newlines with a single space
+
+
+// Read all TSV files & Extract Hindi–Telugu Pairs
+
+1. pairs = []
+List to store all (Hindi, Telugu) pairs.
+
+✔ 2. Loop through every .tsv file
+tqdm shows a progress bar for user-friendly display.
+
+✔ 3. Read the file using pandas
+df = pd.read_csv(path, sep="\t")
+
+✔ 4. Ensure file contains required columns
+if {'Hindi', 'Telugu'}.issubset(df.columns):
+
+✔ 5. For each row → clean both sentences and store
+pairs.append((hi, te))
+
+✔ 6. Skip any file that causes an error
+This prevents the script from breaking.
+
+
+with open(OUT_PATH, "w", encoding="utf-8", newline="") as f:
+    writer = csv.writer(f, delimiter="\t")
+    writer.writerows(pairs)
+
+Opens corpus.tsv for writing
+
+Writes each pair like:
+Hindi_sentence<TAB>Telugu_sentence
+One pair per line.
+

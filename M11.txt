@@ -1,0 +1,90 @@
+
+//semantics 
+  this is about how words carry meanings and how computers understand word meaning 
+
+//lemma and wordforms 
+ lemma - base form of a word 
+  same stem + same parts of speech 
+  ex: run 
+ wordform 
+  actual form that appears in text 
+  ex: banks, ran 
+
+Lemma = dictionary form
+Wordform = inflected form appearing in text
+
+one lemma can have multiple senses(meanings)
+ ex: bank 
+ this introduces word sense ambiguity 
+
+Homonymy 
+ same form,unrelated meanings 
+  ex: bank ,bat
+
+Homographs: same spelling (bank/bank),bat
+Homophones: same sound (“write” vs “right”)
+
+because these might cause issues during 
+ information retrieval 
+   ex: bat care 
+ machine translation 
+   ex: bat 
+ text-to speech 
+  ex: bass 
+
+polysemy 
+  one word with multiple related meanings 
+   ex: key, bank 
+
+metonymy or systematic polysemy 
+   Some words regularly shift meaning between related types.
+
+synonyms 
+ words with same meaning in some contexts 
+  ex: couch/sofa , vomit/throwup 
+ Two lexemes are synonyms if they can be substituted everywhere
+
+ perfect synonyms cannot exist 
+
+antonyms 
+ senses that are opposites with respect to one feature of meaning 
+  ex: dark/light 
+
+hyponym & hypernym 
+ hyponym - subclass 
+ hypernym - superclass 
+
+hyponyms and instances 
+ wordnet has both classes and instnaces 
+  Classes (city, vehicle)
+  Instances (San Francisco, BMW)
+
+applications :
+ information extraction 
+ information retrieval 
+ question answering 
+ machine translation 
+
+ wordnet 3.0 - hierarchial lexical database 
+
+//word-similarity 
+ similarity != synonyms 
+ Similarity depends on shared features.
+  ex: bank 
+  Similarity is calculated between senses, not just words.
+
+//applications 
+ used in :
+  QA, machine translation , document clustering 
+
+//word similarity vs relatedness 
+  Similar words = near synonyms
+ Related words = may not be similar
+
+ car – bicycle (similar)
+ car – gasoline (related but not similar)
+
+ //two classes of similarity algos 
+  1. thesaurus-based (wordnet)
+  2. distributional (context similarity)
+  
